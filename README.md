@@ -13,7 +13,7 @@ cd compra-venta-inventario-CAS
 
 ### Pre-requisitos 📋
 
-_Instalación de los requermientos necesarios para la ejecucion_
+_Instalación de los requerimientos necesarios para la ejecucion_
 
 ```
 pip install -r requirements.txt
@@ -40,8 +40,8 @@ http://localhost:8000/
 _La plantilla de adimistración usada para crear ese proyecto es_
 
 * [Gentelella Admin](https://github.com/GiriB/django-gentelella) - Plantilla Admin usado.
-* [Python] - (https://www.python.org) - Lenguaje de programacion basica.
-* [Django] - (https://www.djangoproject.com) - Framework de Python para la contruccion de aplicaciones web de alto nivel.
+* [Python](https://www.python.org) - Lenguaje de programacion basica.
+* [Django](https://www.djangoproject.com) - Framework de Python para la contruccion de aplicaciones web de alto nivel.
 
 
 
