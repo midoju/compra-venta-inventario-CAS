@@ -45,8 +45,8 @@ _La plantilla de adimistración usada para crear ese proyecto es_
 * [Django](https://www.djangoproject.com) - Framework de Python para la contruccion de aplicaciones web de alto nivel.
 
 ## Flujo de archivos 📋
-* [app](C:\Users\Luis Jumbo\Documents\Repositorio\compra-venta-inventario-CAS\gentelella\app) - Aplicativo web
-* [gentelella](gentelella\gentelella) - Configuraciones de la plantilla Admin
+* [app](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/app) - Aplicativo web
+* [gentelella](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/gentelella) - Configuraciones de la plantilla Admin
 
 ---
 ⌨️ Construido por [LuisMiguelJumbo](https://github.com/midoju) 😊
