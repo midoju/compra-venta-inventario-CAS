@@ -18,8 +18,8 @@ from django.contrib import admin
 
 #from django.conf.urls import handler404,handler500
 #from app.views import Error404View, Error500View
-from django.config import settings
-from django.config.urls.static import static
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
