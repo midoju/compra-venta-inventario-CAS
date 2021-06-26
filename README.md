@@ -1,7 +1,7 @@
 Gestion de compras, ventas e inventarios del Centro de Acopio Sabanilla
 
 Pasos
-Configurar un virtualenv y activar
+[Opcional] Configurar un virtualenv y activar
 
 Obtener el código
 git clone https://github.com/midoju/compra-venta-inventario-CAS.git
