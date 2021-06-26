@@ -2,7 +2,7 @@ arabic-reshaper==2.1.1
 Django==2.1
 future==0.18.2
 html5lib==1.1
-mysql==0.0.2
+mysql
 mysqlclient==2.0.2
 Pillow==8.1.0
 PyPDF2==1.26.0
