@@ -39,10 +39,13 @@ http://localhost:8000/
 
 _La plantilla de adimistración usada para crear ese proyecto es_
 
-* [Gentelella Admin](https://github.com/GiriB/django-gentelella) - Plantilla Admin usado
+* [Gentelella Admin](https://github.com/GiriB/django-gentelella) - Plantilla Admin usado.
+* [Python] - (https://www.python.org) - Lenguaje de programacion basica.
+* [Django] - (https://www.djangoproject.com) - Framework de Python para la contruccion de aplicaciones web de alto nivel.
+
 
 
 ---
-⌨️ con ❤️ por [MiguelJumbo](https://github.com/midoju) 😊
+⌨️ Construido por [LuisMiguelJumbo](https://github.com/midoju) 😊
 Gestion de compras, ventas e inventarios del Centro de Acopio Sabanilla
 
