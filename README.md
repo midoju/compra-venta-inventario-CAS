@@ -34,6 +34,7 @@ _Para el despliegue en local del proyecto debe ir_
 ```
 http://localhost:8000/
 ```
+![2021-06-12 10_10_32-Window](https://user-images.githubusercontent.com/13515624/123519080-c680ab80-d66e-11eb-8dc9-803a22c1f0dd.png)
 
 ## Construido con 🛠️
 
