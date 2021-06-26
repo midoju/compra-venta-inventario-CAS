@@ -4,12 +4,18 @@ Pasos
 [Opcional] Configurar un virtualenv y activar
 
 Obtener el código
+
 git clone https://github.com/midoju/compra-venta-inventario-CAS.git
 cd compra-venta-inventario-CAS
+
 Requisitos de instalación
+
 pip install -r requirements.txt
+
 Ejecutar el código
 cd gentelella
+
 python manage.py runserver
-¡contemplar!
+
+Ejecutar
 Ir a http://localhost:8000/
