@@ -46,7 +46,10 @@ _La plantilla de adimistración usada para crear ese proyecto es_
 
 ## Flujo de archivos 📋
 * [app](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/app) - Aplicativo web
+    * [static](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/app/static) - Carpeta con los plugins instalados 
+    * [templetes](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/app/templates) - Carpeta con los plantillas del fronted 
 * [gentelella](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/gentelella) - Configuraciones de la plantilla Admin
+    * [settings.py](https://github.com/midoju/compra-venta-inventario-CAS/blob/main/gentelella/gentelella/settings.py) - Configuraciones general de la Aplicación web
 
 ---
 ⌨️ Construido por [LuisMiguelJumbo](https://github.com/midoju) 😊
