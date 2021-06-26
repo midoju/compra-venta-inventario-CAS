@@ -47,7 +47,11 @@ _La plantilla de adimistración usada para crear ese proyecto es_
 ## Flujo de archivos 📋
 * [app](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/app) - Aplicativo web
     * [static](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/app/static) - Carpeta con los plugins instalados 
-    * [templetes](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/app/templates) - Carpeta con los plantillas del fronted 
+    * [templates](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/app/templates) - Carpeta con los plantillas del fronted
+    * [forms.py](https://github.com/midoju/compra-venta-inventario-CAS/blob/main/gentelella/app/forms.py) - Formularios de creación y edición
+    * [models.py](https://github.com/midoju/compra-venta-inventario-CAS/blob/main/gentelella/app/models.py) - Modelado de base de datos
+    * [urls.py](https://github.com/midoju/compra-venta-inventario-CAS/blob/main/gentelella/app/urls.py) - Direcciones url del aplicativo web
+    * [views.py](https://github.com/midoju/compra-venta-inventario-CAS/blob/main/gentelella/app/views.py) - Control de funcionamiento del las funciones y clases del aplicativo
 * [gentelella](https://github.com/midoju/compra-venta-inventario-CAS/tree/main/gentelella/gentelella) - Configuraciones de la plantilla Admin
     * [settings.py](https://github.com/midoju/compra-venta-inventario-CAS/blob/main/gentelella/gentelella/settings.py) - Configuraciones general de la Aplicación web
 
