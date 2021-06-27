@@ -1,1 +1,1 @@
-waitress-serve --listen=*:8000 app.wsgi:application
+web: gunicorn gentelella.wsgi --log-file -
