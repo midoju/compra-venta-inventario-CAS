@@ -27,11 +27,11 @@ import json
 
 
 #Paginas de la sección de COMPRAS
-@login_required
+#@login_required
 def crear_compra(request, template_name='app/compras/compra_maiz.html'):
     return render(request, template_name)
 
-@login_required
+#@login_required
 def editar_compra(request, pk, template_name='app/compras/editar_compra_maiz.html'):
     compra = CompraMaiz.objects.get(pk=pk)
     pesajes = PesajeCompraMaiz.objects.filter(idCompraMaiz=pk, vigente=True)
@@ -133,27 +133,27 @@ def anular_compra(request):
 
     return HttpResponse('ok')
 
-@login_required
+#@login_required
 def gestion_compras(request, template_name='app/compras/gestion_compras.html'):
     compras = CompraMaiz.objects.filter(valida=True)
     return render(request, template_name, {'compras':compras})
 
 #Vistas del Productor
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class CrearProductor(CreateView):
     model = Productor
     template_name = 'app/compras/productor_crear.html'
     form_class = ProductorForm
     success_url = reverse_lazy('listar_productores')
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class EditarProductor(UpdateView):
     model = Productor
     form_class = ProductorForm
     template_name = 'app/compras/productor_editar.html'
     success_url = reverse_lazy('listar_productores')
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class EliminarProductor(DeleteView):
     model = Productor
     template_name = "app/compras/productor_eliminar.html"
@@ -173,13 +173,13 @@ class EliminarProductor(DeleteView):
         context = super().get_context_data(**kwargs)
         return context
 
-@login_required
+#@login_required
 def listar_productores(request, template_name='app/compras/productor_listar.html'):
     form = Productor.objects.all()
     return render(request, template_name, {'form':form})
 
 #Vistas del CRUD de Empresa
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class CrearEmpresa(CreateView):
     model = Empresa
     template_name = 'app/ventas/empresa_crear.html'
@@ -190,7 +190,7 @@ class CrearEmpresa(CreateView):
         messages.add_message(self.request, messages.WARNING, 'Hubo problemas para crear esta Empresa.')
         return super().form_invalid(form)
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class EditarEmpresa(UpdateView):
     model = Empresa
     form_class = EmpresaForm
@@ -201,7 +201,7 @@ class EditarEmpresa(UpdateView):
         messages.add_message(self.request, messages.WARNING, 'Hubo problemas para editar esta Empresa.')
         return super().form_invalid(form)
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class EliminarEmpresa(DeleteView):
     model = Empresa
     template_name = "app/ventas/empresa_eliminar.html"
@@ -221,27 +221,27 @@ class EliminarEmpresa(DeleteView):
         context = super().get_context_data(**kwargs)
         return context
 
-@login_required
+#@login_required
 def listar_empresas(request, template_name='app/ventas/empresa_listar.html'):
     form = Empresa.objects.all()
     return render(request, template_name, {'form':form})
 
 #Vistas del CRUD de ResponsableTransporte
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class CrearResponsableTransporte(CreateView):
     model = ResponsableTransporte
     template_name = 'app/ventas/transportista_crear.html'
     form_class = ResponsableTransporteForm
     success_url = reverse_lazy('listar_responsableTransporte')
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class EditarResponsableTransporte(UpdateView):
     model = ResponsableTransporte
     form_class = ResponsableTransporteForm
     template_name = 'app/ventas/transportista_editar.html'
     success_url = reverse_lazy('listar_responsableTransporte')
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class EliminarResponsableTransporte(DeleteView):
     model = ResponsableTransporte
     template_name = "app/ventas/transportista_eliminar.html"
@@ -262,19 +262,19 @@ class EliminarResponsableTransporte(DeleteView):
         return context
 
 
-@login_required
+#@login_required
 def listarResponsableTransporte(request, template_name='app/ventas/transportista_listar.html'):
     form = ResponsableTransporte.objects.all()
     return render(request, template_name, {'form':form})
 
 #Vista de gestion de ventas
-@login_required
+#@login_required
 def gestion_ventas(request, template_name='app/ventas/gestion_ventas.html'):
     ventas = VentaMaiz.objects.filter(valida=True)
     return render(request, template_name, {'ventas':ventas})
 
 #Vista de venta nueva
-@login_required
+#@login_required
 def venta_nueva_maiz(request, template_name='app/ventas/venta_nueva_maiz.html'):
     return render(request, template_name)
 
@@ -450,7 +450,7 @@ def obtener_maiz(request):
     return HttpResponse(total_bodega)
 
 #editar venta de maiz
-@login_required
+#@login_required
 def editar_venta(request, pk, template_name='app/ventas/editar_venta_maiz.html'):
     venta = VentaMaiz.objects.get(pk=pk)
     pesajes = PesajeVentaMaiz.objects.filter(idVentaMaiz=pk, vigente=True)
@@ -524,26 +524,26 @@ def finalizar_venta(request):
     return HttpResponse('ok')
 
 #Vista de Proveedor
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class CrearProveedor(CreateView):
     model = Proveedor
     template_name = "app/inventarios/proveedor/proveedor_crear.html"
     form_class = ProveedorForm
     success_url = reverse_lazy('listar_proveedor')
 
-@login_required
+#@login_required
 def listar_proveedor(request, template_name='app/inventarios/proveedor/proveedor_listar.html'):
     form = Proveedor.objects.all()
     return render(request, template_name, {'form':form})
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class EditarProveedor(UpdateView):
     model = Proveedor
     form_class = ProveedorForm
     template_name = 'app/inventarios/proveedor/proveedor_editar.html'
     success_url = reverse_lazy('listar_proveedor')
 
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class EliminarProveedor(DeleteView):
     model = Proveedor
     template_name = "app/inventarios/proveedor/proveedor_eliminar.html"
@@ -563,7 +563,7 @@ class EliminarProveedor(DeleteView):
         context = super().get_context_data(**kwargs)
         return context 
 
-@login_required
+#@login_required
 def reportes_compras(request, template_name='app/inventarios/listar_compras.html'):
     
     estado = -1 #Por defecto busca todas las compras
@@ -594,7 +594,7 @@ def reportes_compras(request, template_name='app/inventarios/listar_compras.html
     return render(request, template_name, {'compras':compras, 'estado':estado, 'nom_productor':nom_productor,
         'fechaDesde':fechaDesde, 'fechaHasta':fechaHasta, 'pk_compras':serializers.serialize("json", compras, fields=['pk'])})
 
-@login_required
+#@login_required
 def imprimir_compras(request):
     pks_input = request.POST['pks_compras'] #pks de la etiqueta input
     pks_compras = pks_input[0:-1].split(' ') #Considerando que llega tipo: '23 '
@@ -633,7 +633,7 @@ def imprimir_compras(request):
        return HttpResponse('Tenemos los siguientes errores <pre>' + html + '</pre>')
     return response
 
-@login_required
+#@login_required
 def reportes_ventas(request, template_name='app/inventarios/listar_ventas.html'):
     estado = -1 #Por defecto busca todas las ventas 'app/inventarios/listar_ventas.html'
     #nro_ruc = ''
@@ -667,7 +667,7 @@ def reportes_ventas(request, template_name='app/inventarios/listar_ventas.html')
     return render(request, template_name, {'ventas':ventas, 'estado':estado, 'nom_empresa':nom_empresa,
         'fechaDesde':fechaDesde, 'fechaHasta':fechaHasta, 'pk_ventas':serializers.serialize("json", ventas, fields=['pk'])})
 
-@login_required
+#@login_required
 def imprimir_ventas(request):
     pks_input = request.POST['pks_ventas'] #pks de la etiqueta input
     pks_ventas = pks_input[0:-1].split(' ') #Considerando que llega tipo: '23 '
@@ -709,8 +709,8 @@ def imprimir_ventas(request):
        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
 
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def reportes_facturacion_compras(request, template_name='app/facturacion/listar_facturacion_compras.html'):
     tipoDocumento = "Todas" #Por defecto busca todas las compras
     nom_productor = ''
@@ -740,8 +740,8 @@ def reportes_facturacion_compras(request, template_name='app/facturacion/listar_
     return render(request, template_name, {'compras':compras, 'tipoDocumento':tipoDocumento, 'nom_productor':nom_productor,
         'fechaDesde':fechaDesde, 'fechaHasta':fechaHasta, 'pk_compras':serializers.serialize("json", compras, fields=['pk'])})
 
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def imprimir_facturacion_compras(request):
     pks_input = request.POST['pks_compras'] #pks de la etiqueta input
     pks_compras = pks_input[0:-1].split(' ') #Considerando que llega tipo: '23 '
@@ -780,8 +780,8 @@ def imprimir_facturacion_compras(request):
        return HttpResponse('Tenemos los siguientes errores <pre>' + html + '</pre>')
     return response
 
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def reportes_facturacion_ventas(request, template_name='app/facturacion/listar_facturacion_ventas.html'):
     empresa = '' #Por defecto todas las cventas
     
@@ -806,8 +806,8 @@ def reportes_facturacion_ventas(request, template_name='app/facturacion/listar_f
     return render(request, template_name, {'ventas':ventas, 'empresa':empresa,
         'fechaDesde':fechaDesde, 'fechaHasta':fechaHasta, 'pk_ventas':serializers.serialize("json", ventas, fields=['pk'])})
 
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def imprimir_facturacion_ventas(request):
     pks_input = request.POST['pks_ventas'] #pks de la etiqueta input
     pks_ventas = pks_input[0:-1].split(' ') #Considerando que llega tipo: '23 '
@@ -846,8 +846,8 @@ def imprimir_facturacion_ventas(request):
        return HttpResponse('Tenemos los siguientes errores <pre>' + html + '</pre>')
     return response
 
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def reportes_facturacion_transporte(request, template_name='app/facturacion/listar_facturacion_transporte.html'):
     transportista = '' #Por defecto todas las cventas
     
@@ -872,8 +872,8 @@ def reportes_facturacion_transporte(request, template_name='app/facturacion/list
     return render(request, template_name, {'ventas':ventas, 'transportista':transportista,
         'fechaDesde':fechaDesde, 'fechaHasta':fechaHasta, 'pk_ventas':serializers.serialize("json", ventas, fields=['pk'])})
 
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def imprimir_facturacion_transporte(request):
     pks_input = request.POST['pks_ventas'] #pks de la etiqueta input
     pks_ventas = pks_input[0:-1].split(' ') #Considerando que llega tipo: '23 '
@@ -912,14 +912,14 @@ def imprimir_facturacion_transporte(request):
        return HttpResponse('Tenemos los siguientes errores <pre>' + html + '</pre>')
     return response
 
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def inventario_general(request, template_name='app/inventarios/inventario_general.html'):
     form = Articulo.objects.all()
     return render(request, template_name, {'form':form})  
 #creando una lista bodiga
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def listar_bodega(request, template_name='app/inventarios/listar_bodega.html'):
     total_bodega = 0
     form = BodegaMaiz.objects.filter(vigente=True)
@@ -936,7 +936,7 @@ def listar_bodega(request, template_name='app/inventarios/listar_bodega.html'):
     return render(request, template_name, {'form':form,'ingreso':ingreso,'salida':salida,'total_bodega':total_bodega})           
 
 ####
-@login_required
+#@login_required
 def imprimir_bodega(request):        
     total_bodega = 0
     form = BodegaMaiz.objects.filter(vigente=True)
@@ -985,27 +985,27 @@ def imprimir_bodega(request):
 
 ####
 
-@method_decorator([login_required,gerente_required], name='dispatch') #@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class CrearArticulo(CreateView):
     model = Articulo
     template_name = 'app/inventarios/articulos/articulo_crear.html'
     form_class = ArticuloForm
     success_url = reverse_lazy('listar_articulo')
 #editar un articulo
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class EditarArticulo(UpdateView):
     model = Articulo
     form_class = ArticuloForm
     template_name = 'app/inventarios/articulos/articulo_editar.html'
     success_url = reverse_lazy('listar_articulo')
 #listar articulos
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def listar_articulo(request, template_name='app/inventarios/articulos/articulo_listar.html'):
     form = Articulo.objects.all()
     return render(request, template_name, {'form':form})
 
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class EliminarArticulo(DeleteView):
     model = Articulo
     template_name = "app/inventarios/articulos/articulo_eliminar.html"
@@ -1025,20 +1025,20 @@ class EliminarArticulo(DeleteView):
         context = super().get_context_data(**kwargs)
         return context 
 
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class CrearCategoria(CreateView):
     model = Categoria
     template_name = 'app/inventarios/categoria/categoria_crear.html'
     form_class = CategoriaForm
     success_url = reverse_lazy('listar_categoria')
 
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def listar_categoria(request, template_name='app/inventarios/categoria/categoria_listar.html'):
     form = Categoria.objects.all()
     return render(request, template_name, {'form':form})
 
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class EditarCategoria(UpdateView):
     model = Categoria
     form_class = CategoriaForm
@@ -1046,7 +1046,7 @@ class EditarCategoria(UpdateView):
     success_url = reverse_lazy('listar_categoria')
 
 
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class EliminarCategoria(DeleteView):
     model = Categoria
     template_name = "app/inventarios/categoria/categoria_eliminar.html"
@@ -1067,14 +1067,14 @@ class EliminarCategoria(DeleteView):
         return context
    
 @csrf_exempt
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def ingresar_articulo(request, template_name='app/inventarios/articulos/articulo_ingreso.html'):               
    return render(request, template_name)
     
 @csrf_exempt
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def salida_articulo(request, template_name='app/inventarios/articulos/articulo_salida.html'):                  
     return render(request, template_name)
 
@@ -1255,20 +1255,20 @@ class ImprimirSalidaPdfView(View):
         return HttpResponseRedirect(reverse_lazy('ingresar_articulo'))
 
 #Vistas del CRUD de empleado
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class CrearEmpleado(CreateView):
     model = Empleado
     template_name = 'app/inventarios/empleado/empleado_crear.html'
     form_class = EmpleadoForm
     success_url = reverse_lazy('listar_empleado')
 
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def listar_empleado(request, template_name='app/inventarios/empleado/empleado_listar.html'):
     form = Empleado.objects.all()
     return render(request, template_name, {'form':form})
 
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class EditarEmpleado(UpdateView):
     model = Empleado
     form_class = EmpleadoForm
@@ -1276,7 +1276,7 @@ class EditarEmpleado(UpdateView):
     success_url = reverse_lazy('listar_empleado')
 
 
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class EliminarEmpleado(DeleteView):
     model = Empleado
     template_name = "app/inventarios/empleado/empleado_eliminar.html"
@@ -1297,8 +1297,8 @@ class EliminarEmpleado(DeleteView):
         return context
 
 #Facturación Compras
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def facturacion_compra(request, template_name='app/facturacion/facturacion_compras.html'):
     #Productores que tienen compras válidas y pendientes
     productores = Productor.objects.filter(pk__in=CompraMaiz.objects.filter(valida=True, pendiente=True).values_list('idProductor'))
@@ -1344,8 +1344,8 @@ def guardar_documento(request):
     return HttpResponse('ok')
 
 #Facturación de Ventas
-@login_required
-@gerente_required   
+#@login_required
+#@gerente_required   
 def facturacion_venta(request, template_name='app/facturacion/facturacion_ventas.html'):
     #Productores que tienen compras válidas y pendientes
     productores = Empresa.objects.filter(pk__in=VentaMaiz.objects.filter(valida=True, pendiente=True).values_list('idEmpresa_id'))
@@ -1387,8 +1387,8 @@ def guardar_documento_venta(request):
     return HttpResponse('ok')
 
 #Facturación de Transporte
-@login_required
-@gerente_required
+#@login_required
+#@gerente_required
 def facturacion_transporte(request, template_name='app/facturacion/facturacion_transporte.html'):
     #Transportistas que tienen compras válidas y pendientes
     transportista = ResponsableTransporte.objects.filter(pk__in=VentaMaiz.objects.filter(statusFactura=True).values_list('idResponsableTransporte_id'))
@@ -1445,7 +1445,7 @@ def buscar_PesajesCompra(request):
     return JsonResponse(data, safe=False)
 
 #Pagina del Dashboard 
-class DashboardView(LoginRequiredMixin, TemplateView):
+class DashboardView(TemplateView):#LoginRequiredMixin, 
     template_name = 'app/dashboard.html'
     #Obtenemos el total de compras
     def get_total_compras(self):
