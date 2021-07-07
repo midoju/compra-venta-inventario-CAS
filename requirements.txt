@@ -19,3 +19,4 @@ python-decouple==3.4
 django-waitress==0.1.0 
 waitress==1.4.4
 whitenoise
+django-heroku==0.3.1
