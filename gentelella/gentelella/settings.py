@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'gentelella.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'centro_acopio',
+        'NAME': 'db_acopio',#'centro_acopio',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

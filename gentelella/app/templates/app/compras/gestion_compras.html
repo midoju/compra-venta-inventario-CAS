@@ -9,11 +9,19 @@
   <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
   <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
   <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+  
 {% endblock stylesheets %}
 
 {% block content %}
   <div class="right_col" role="main">
-    
+        <nav>
+          <ul class="breadcrumb">
+            <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+            <li class="active">Gestión Compras</li>
+          </ul>
+        </nav>
+      <!-- </div> 
+    </div>-->
     <div class="row">
       <!-- form para el ingreso de los datos de una nueva compra -->
     <div class="clearfix"></div>
@@ -21,8 +29,9 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Compras de Maiz</h2>
-            
+            <div class="col-sm-6">
+              <h3>Compras de Maiz</h3>
+            </div>
             <div class="clearfix"></div>
           </div>
 
@@ -32,8 +41,8 @@
                   <div class="form-group">
                       <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-0">                        
                         <div>
-                          <a href="{% url 'crear_compra' %}" class="btn btn-success btn-flat"><i class="fa fa-plus-square"></i> Nueva Compra</a>
-                          <a href="{% url 'reportes_compras' %}" class="btn btn-success btn-flat"><i class="fa fa-file-pdf-o"></i> Reporte Compras</a>
+                          <a href="{% url 'crear_compra' %}" class="btn btn-primary btn-flat"><i class="fa fa-plus-square"></i> Nueva Compra</a>
+                          <a href="{% url 'reportes_compras' %}" class="btn btn-primary btn-flat"><i class="fa fa-file-pdf-o"></i> Reporte Compras</a>
                         </div>
                       </div>
                   </div>    

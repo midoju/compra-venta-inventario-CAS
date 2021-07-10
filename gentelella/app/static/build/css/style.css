@@ -1,56 +1,28 @@
-.card {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #ffffff;
-    background-clip: border-box;
-    border: 0 solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
-  }
-  
-  .card-body {
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1.25rem;
-  }
-  
-  .login-card-body,
-  .register-card-body {
-    background: #ffffff;
-    border-top: 0;
-    color: #666;
-    padding: 20px;
-  }
-  
-  .login-box,
-  .register-box {
-    width: 360px;
-  }
-  
-  @media (max-width: 576px) {
-    .login-box,
-    .register-box {
-      margin-top: .5rem;
-      width: 90%;
-    }
-  }
-  
-  .login-box-msg,
-  .register-box-msg {
-    margin: 0;
-    padding: 0 20px 20px;
-    text-align: center;
-  }
-  
-  
-  .login-box-msg,
-  .register-box-msg {
-    margin: 0;
-    padding: 0 20px 20px;
-    text-align: center;
-  }
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  margin-bottom: auto;
+  background-color: transparent;
+  float: left;
+}
+ul.breadcrumb li {
+  display: inline;
+  font-size: 15px;
+}
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+ul.breadcrumb li a {
+  color: #007bff;
+  text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+.navbar-primary {
+  background-color: #007bff;
+}

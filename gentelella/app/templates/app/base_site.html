@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,6 +32,9 @@
       {% endblock stylesheets %}
       <!-- Custom Theme Style -->
       <link href="/static/build/css/custom.css" rel="stylesheet">
+
+      <!-- Custom Theme Style -->
+      <link href="{% static 'build/css/style.css'%}" rel="stylesheet">
     {% endblock head %}
   </head>
 
@@ -50,10 +54,10 @@
               {% include "app/top_navigation.html" %}
             </div>
           {% endblock top_navigation %}
-
+         
           {% block content %}
-            <!-- {{ content }} -->
-          {% endblock content %}
+            <!-- Content -->
+          {% endblock %}
 
           {% block footer %}
             <footer>
