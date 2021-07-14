@@ -1,38 +1,45 @@
 {% load static %}
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="{% url 'inicio' %}" class="site_title"><i class="fa fa-spinner"></i> <span>Centro Acopio</span></a>
+    <!-- <a href="{% url 'inicio' %}" class="site_title"><i class="fa fa-users"></i> <span>Centro Acopio Sabanilla</span></a> -->
+    <a href="{% url 'inicio' %}" class="site_title">
+      <img src="{% static 'images/maiz.png' %}"
+           alt="Logo Organización"
+           
+          >
+      <span>C. A. Sabanilla</span>
+    </a>
   </div>
 
   <div class="clearfix"></div> 
   
   <!-- menu profile quick info -->
-  <div class="profile clearfix">
-    <div class="profile_pic">
-      <img src="{% static 'images/maiz.png'%}" alt="Imagen centro acopio"  class="img-circle profile_img">
-    </div>
-    <div class="profile_info">
-      <span>Bienvenido,</span>
-        <h2>{{ user.first_name }} {{ user.last_name }}</h2>      
-    </div>
-  </div>
+  <section class="profile clearfix">
+    <figure class="profile_pic">
+      <img src="{% static 'images/user.png' %}" alt="..."  class="img-circle profile_img">
+    </figure>
+    <article class="profile_info">
+      <span>Bienvenido</span>
+      <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+      <span><i  class="fa fa-circle"></i> En linea </span>
+    </article>
+  </section>
   <!-- /menu profile quick info -->
-  <br>
   <!-- sidebar menu -->
   <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-    <div class="menu_section">
-        <ul class="nav side-menu">
-          <li><a><i class="fa fa-cart-arrow-down"></i>Compras <span class="fa fa-chevron-down"></span></a>
+    <nav class="menu_section">
+      <ul class="nav side-menu">
+          <li><a><i class="fa fa-cart-arrow-down"></i> Compras <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{% url 'gestion_compras' %}">Gestión de Compras</a></li>
               <li><a>Productor<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">                  
-                  <li><a href="{% url 'crear_productor' %}">Crear Productor</a></li> 
-                  <li><a href="{% url 'listar_productores' %}">Listado de Productores</a></li>
+                  <li class="sub_menu"><a href="{% url 'crear_productor' %}">Crear Productor</a></li> 
+                  <li class="sub_menu"><a href="{% url 'listar_productores' %}">Listado de Productores</a></li>
                 </ul>
-              </li>                      
-             </ul>
-            </li>
+              </li>                       
+            </ul>
+          </li>
           <li><a><i class="fa fa-cart-plus"></i> Ventas <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{% url 'gestion_ventas' %}">Gestión de Ventas</a></li>
@@ -84,20 +91,20 @@
             <ul class="nav child_menu">
               <li><a href="{% url 'reportes_compras' %}">Reportes de Compras</a></li>
               <li><a href="{% url 'reportes_ventas' %}">Reportes de Ventas</a></li>
-              <li><a href="{% url 'reporte_facturacion_compras' %}">Reportes de Facturación de Compras</a></li>
-              <li><a href="{% url 'reporte_facturacion_ventas' %}">Reportes de Facturación de Ventas</a></li>
-              <li><a href="{% url 'reporte_facturacion_transporte' %}">Reportes de Facturación de Transporte</a></li> 
+              <li><a href="{% url 'reporte_facturacion_compras' %}">Reportes de Documentos de Compras</a></li>
+              <li><a href="{% url 'reporte_facturacion_ventas' %}">Reportes de Documentos de Ventas</a></li>
+              <li><a href="{% url 'reporte_facturacion_transporte' %}">Reportes de Documentos de Transporte</a></li> 
             </ul>
           </li>
-          <li><a><i class="fa fa-wpforms"></i>Facturacion <span class="fa fa-chevron-down"></span></a>
+          <li><a><i class="fa fa-wpforms"></i>Registro Doc. <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{% url 'facturacion_compra' %}">Facturación de Compras</a></li>
-              <li><a href="{% url 'facturacion_venta' %}">Facturación de Ventas</a></li>
-              <li><a href="{% url 'facturacion_transporte' %}">Facturación de Transporte</a></li>
+              <li><a href="{% url 'facturacion_compra' %}">Documento de Compras</a></li>
+              <li><a href="{% url 'facturacion_venta' %}">Documento de Ventas</a></li>
+              <li><a href="{% url 'facturacion_transporte' %}">Documento de Transporte</a></li>
             </ul>
           </li>
       </ul>
-    </div>
+    </nav>
   </div>
   <!-- /sidebar menu -->
   <!-- /menu footer buttons -->

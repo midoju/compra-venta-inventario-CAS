@@ -1,0 +1,17 @@
+{% load static%}
+<nav>
+    <ul class="breadcrumb">
+      <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+        {% block nav_s %}
+      
+        {% endblock nav_s %}
+    </ul>
+</nav>
+
+<!-- <nav>
+    <ul class="breadcrumb">
+      <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+      <li><a href=" {% url 'gestion_compras' %} ">Gestionar Compras</a></li>
+      <li class="active">Nuevo Productor</li>
+    </ul>
+</nav> -->

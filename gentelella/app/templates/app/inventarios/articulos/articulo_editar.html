@@ -6,6 +6,13 @@
 {% block content %}
   <div class="right_col" role="main">
     <div class="">
+      <nav>
+        <ul class="breadcrumb">
+          <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+          <li><a href=" {% url 'listar_articulo' %} ">Listar Articulos</a></li>
+          <li class="active">Editar Articulo</li>
+        </ul>
+      </nav>
       
       <div class="clearfix"></div>
 
@@ -14,7 +21,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Editar Articulo</h2>
+              <h2><i class="fa fa-edit"></i> Editar Articulo</h2>
               <div class="clearfix"></div>
             </div>
             <div class="x_content">

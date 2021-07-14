@@ -4,20 +4,21 @@
 
 {% block stylesheets %}
 {{ block.super }}
-<link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 {% endblock stylesheets %}
 
 {% block content %}
-  <div class="right_col" role="main">    
+  <div class="right_col" role="main">
+    <nav>
+      <ul class="breadcrumb">
+        <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+        <li class="active">Listado de Articulos</li>
+      </ul>
+    </nav>    
     <div class="row">         
         <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Listado de Articulos</h2>            
+            <h2><i class="fa fa-cubes"></i> Listado de Articulos</h2>            
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
@@ -49,15 +50,16 @@
               </form>
               <br>              
               <div class="x_content">
-                <table id="tblInventario" class="table table-striped jambo_table bulk_action">
+              <div class="table-responsive">
+                <table id="tblInventario" class="table table-striped jambo_table dt-responsive nowrap" style="width: 100%;">
                   <thead>
                     <tr class="headings">                                                           
-                      <th class="column-title text-center">Nro</th>
-                      <th class="column-title text-center">Descripción</th>
-                      <th class="column-title text-center">Categoria</th>
-                      <th class="column-title text-center">Stock</th>   
-                      <th class="column-title text-center">Unidad</th> 
-                      <th class="column-title text-center">Opciones</th>   
+                      <th class="column-title text-center" scope="col">Nro</th>
+                      <th class="column-title text-center" scope="col">Descripción</th>
+                      <th class="column-title text-center" scope="col">Categoria</th>
+                      <th class="column-title text-center" scope="col">Stock</th>   
+                      <th class="column-title text-center" scope="col">Unidad</th> 
+                      <th class="column-title text-center" scope="col">Opciones</th>   
                     </tr>
                   </thead>
                   <tbody>
@@ -75,7 +77,8 @@
                     </tr>
                     {% endfor %}                   
                   </tbody>
-                </table>                                    
+                </table>
+              </div>                                    
             </div>
             </div>          
           </div>
@@ -85,17 +88,7 @@
 {% endblock content %}
 
 {% block javascripts %}
-  {{ block.super}}
-    <!-- Datatables -->
-  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
-  <script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-  <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-  <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-  
+  {{ block.super}}  
   <script>
     $(function(){
 

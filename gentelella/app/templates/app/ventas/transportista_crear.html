@@ -6,7 +6,13 @@
 {% block content %}
   <div class="right_col" role="main">
     <div class="">
-      
+      <nav>
+        <ul class="breadcrumb">
+          <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+          <li><a href=" {% url 'listar_responsableTransporte' %} ">Listado de Transportistas</a></li>
+          <li class="active">Crear Transportista</li>
+        </ul>
+      </nav>
       <div class="clearfix"></div>
 
       <div class="row">
@@ -14,19 +20,19 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Crear Transportista</h2>
+              <h2><i class="fa fa-bus"></i> Crear Transportista</h2>
               <div class="clearfix"></div>
             </div>
             <div class="x_content"> 
               <form method="POST" class="form-horizontal form-label-left">
                 {% csrf_token %}
                 <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Identificación</label>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">{{form.identificacion.label}}</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     {{form.identificacion}}
                     <span class="fa fa-credit-card form-control-feedback right" aria-hidden="true"></span>
                   </div>
-                </div>                
+                </div>
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombres y Apellidos</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">                    

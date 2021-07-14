@@ -1,27 +1,19 @@
 {% extends "app/base_site.html" %}
-
+{% load static %}
 {% block title %} Gestión Compras {% endblock title %}
 
 {% block stylesheets %}
   {{ block.super }}
-  <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-  
 {% endblock stylesheets %}
 
 {% block content %}
   <div class="right_col" role="main">
         <nav>
           <ul class="breadcrumb">
-            <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+            <li><a href="{% url 'inicio' %}">Inicio</a></li>
             <li class="active">Gestión Compras</li>
           </ul>
         </nav>
-      <!-- </div> 
-    </div>-->
     <div class="row">
       <!-- form para el ingreso de los datos de una nueva compra -->
     <div class="clearfix"></div>
@@ -30,7 +22,7 @@
         <div class="x_panel">
           <div class="x_title">
             <div class="col-sm-6">
-              <h3>Compras de Maiz</h3>
+              <h2><i class="fa fa-cart-arrow-down"></i> Gestion de Compras de Maiz</h2>
             </div>
             <div class="clearfix"></div>
           </div>
@@ -49,15 +41,15 @@
               </form>              
               <br>
               <div class="table-responsive">
-                <table id="datatable" class="table table-striped jambo_table bulk_action">
+                <table id="datatable" class="table table-striped jambo_table dt-responsive nowrap" style="width: 100%;">
                   <thead>
                     <tr class="headings">                     
-                      <th class="column-title text-center">Nro.</th>
-                      <th class="column-title text-center">Fecha</th>
-                      <th class="column-title text-center">Razón Social Productor</th>
-                      <th class="column-title text-center">Facturación</th>
-                      <th class="column-title text-center">Total</th>
-                      <th class="column-title text-center">Opciones</th> 
+                      <th class="column-title text-center" scope="col">Nro.</th>
+                      <th class="column-title text-center" scope="col">Fecha</th>
+                      <th class="column-title text-center" scope="col">Razón Social Productor</th>
+                      <th class="column-title text-center" scope="col">Facturación</th>
+                      <th class="column-title text-center" scope="col">Total</th>
+                      <th class="column-title text-center" scope="col">Opciones</th> 
                     </tr>
                   </thead>
 
@@ -78,7 +70,7 @@
                         </td>
                       </tr>
                     {% endfor %}                                  
-                </tbody>
+                  </tbody>
               </table>
               </div>                      
           </div>
@@ -95,14 +87,16 @@
     <!-- jquery.inputmask -->
   <script src="/static/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
 
-  <!-- Datatables -->
-  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
   <!-- Sweet Alert -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
     $(function () {
+      $('#datatable').DataTable({
+        responsive: true,
+      language: {
+          "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        }
+      });
 
       $("#datatable tbody").on("click", ".btnAnularCompra",function () {
         swal({

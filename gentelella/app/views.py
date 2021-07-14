@@ -615,12 +615,13 @@ def imprimir_compras(request):
         'compras': compras, 
         'reporte' : {'empresa':'Centro de Acopio de Sabanilla',
         'direccion':'Sabanilla-Loja-Ecuador',
-        'nombre':'Compras de maíz amarillo duro','fecha':fecha
-        }
+        'nombre':'Compras de maíz amarillo duro','fecha':fecha,
+        },
+        'icono' : '{}{}'.format(settings.STATIC_URL, 'images/maiz.png')
     }    
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="reporte compras %s.pdf"' % (fecha1)
+    #response['Content-Disposition'] = 'attachment; filename="reporte compras %s.pdf"' % (fecha1)
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -632,6 +633,7 @@ def imprimir_compras(request):
     if pisa_status.err:
        return HttpResponse('Tenemos los siguientes errores <pre>' + html + '</pre>')
     return response
+
 
 @login_required
 def reportes_ventas(request, template_name='app/inventarios/listar_ventas.html'):
@@ -696,7 +698,7 @@ def imprimir_ventas(request):
     
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="reporte venta %s.pdf"' % (fecha1)
+    #response['Content-Disposition'] = 'attachment; filename="reporte venta %s.pdf"' % (fecha1)
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
