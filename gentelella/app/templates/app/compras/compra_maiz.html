@@ -4,18 +4,19 @@
 
 {% block stylesheets %}
   {{ block.super }}
-  <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
   <!--plugin autocompletado -->
   <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
 {% endblock stylesheets %}
 
 {% block content %}
   <div class="right_col" role="main">
-
+    <nav>
+      <ul class="breadcrumb">
+        <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+        <li><a href=" {% url 'gestion_compras' %} ">Gestionar Compras</a></li>
+        <li class="active">Nuevo Pesaje Compra</li>
+      </ul>
+    </nav>
     <div class="row">
       <!-- form para el ingreso de los datos de una nueva compra -->
       <div class="clearfix"></div>
@@ -23,28 +24,11 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Pesaje Compra de Maiz</h2>
+            <h2><i class="fa fa-balance-scale"></i> Pesaje Compra de Maiz</h2>
             <div class="clearfix"></div>
           </div> 
           <div class="x_content">
-            <!-- form para el ingreso de los datos de una nueva compra 
-            <div class="form-horizontal form-label-left ">
-              <div class="form-group">
-                <label class="control-label col-md-1 col-sm-1 col-xs-12">Productor:</label>
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                <div class="input-group">
-                  <input type="text" name="productor" id="productor" class="form-control" 
-                   value="{{ productor}}">
-                  <span class="input-group-btn">
-                    <button id="btnLimpiarE" type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
-                  </span>
-                </div>                   
-              </div>
-
-              </div>
-              
-            </div>-->
-            
+                       
              <!-- form para el ingreso de los datos de una nueva compra -->
              <div class="form-horizontal form-label-left ">
               <div class="form-group">
@@ -66,40 +50,8 @@
                 </div>
               </div>                      
             </div>
-             <!-- form para el ingreso de los datos de una nueva compra 
-            <div class="form-horizontal form-label-left">
-              <div class="form-group">
-                <label class="control-label col-md-2 col-sm-4 col-xs-3">Identificación1:</label>
-                <div class="col-md-4 col-sm-6 col-xs-12 ">
-                  <div class="input-group">
-                    <input id="nro_cedula" type="text" class="form-control" data-inputmask="'mask' : '9999999999'">
-
-                    <span class="input-group-btn">
-                      <button id="btnBuscar" class="btn btn-primary"><span class="fa fa-search"></span> Buscar</button>
-                    </span>
-                  </div>
-                </div>
-
-                <label class="control-label col-md-2 col-sm-4 col-xs-3">Productor:</label>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <input id="nom_productor" readonly="readonly" type="text" class="form-control"
-                    placeholder="Nombre del Productor">
-                  <span class="fa fa-user form-control-feedback right" aria-hidden="true">
-                  </span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-2 col-sm-3 col-xs-12">Observación:</label>
-                <div class="col-md-10 col-sm-9 col-xs-12">
-                  <textarea id="observacion" class="form-control" rows="2" placeholder="..."></textarea>
-                </div>
-              </div>
-            </div>
-            -->
-
-
             <div class="divider-dashed"></div>
-          </div>
+          
  
           <div class="form-horizontal form-label-left">
             <div class="form-group">
@@ -168,23 +120,21 @@
           <br>
 
           <div class="table-responsive">
-            <table id="tabla_pesaje" class="table table-striped jambo_table bulk_action" style="width: 100%;">
+            <table id="tabla_pesaje" class="table table-striped jambo_table dt-responsive nowrap" style="width: 100%;">
               <thead>
                 <tr class="headings"> 
-                  <th class="column-title" scope="col" style="width: 7%;">Nro.</th> 
-                  <th class="column-title text-center" scope="col" style="width: 18%;">Fecha </th>
-                  <th class="column-title text-center"scope="col" style="width: 12.5%;">Peso Bruto </th>
-                  <th class="column-title text-center"scope="col" style="width: 12.5%;">Peso Tara </th>
-                  <th class="column-title text-center"scope="col" style="width: 12.5%;">Peso Neto </th>
-                  <th class="column-title text-center"scope="col" style="width: 12.5%;">F. Conversión </th>
-                  <th class="column-title text-center"scope="col" style="width: 12.5%;">Peso Quintales </th>
-                  <th class="column-title text-center"scope="col" style="width: 12.5%;">Opciones</th>
+                  <th class="column-title text-center" scope="col">Nro.</th> 
+                  <th class="column-title text-center" scope="col">Fecha </th>
+                  <th class="column-title text-center" scope="col">Peso Bruto </th>
+                  <th class="column-title text-center" scope="col">Peso Tara </th>
+                  <th class="column-title text-center" scope="col">Peso Neto </th>
+                  <th class="column-title text-center" scope="col">F. Conversión </th>
+                  <th class="column-title text-center" scope="col">Peso Quintales </th>
+                  <th class="column-title text-center" scope="col">Opciones</th>
                 </tr>
               </thead>
-
               <tbody></tbody>
             </table>
-
           </div>
 
           <div class="form-group">
@@ -195,13 +145,13 @@
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
 
     </div>
   </div>
-  <!-- /Form para el ingreso de los datos de una empresa nueva -->
-  
+ 
 {% endblock content %}
 
 {% block javascripts %}
@@ -209,23 +159,6 @@
   <!-- jquery.inputmask -->
   <script src="/static/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
 
-  <!-- Datatables --> 
-  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-   <!-- Datatables -->
-  <script src="/static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-  <script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-  <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-  <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-  <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
-  <script src="/static/vendors/pdfmake/build/pdfmake.min.js"></script>
-  <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
   <!-- plugin autocompletado -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 

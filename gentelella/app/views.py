@@ -615,12 +615,13 @@ def imprimir_compras(request):
         'compras': compras, 
         'reporte' : {'empresa':'Centro de Acopio de Sabanilla',
         'direccion':'Sabanilla-Loja-Ecuador',
-        'nombre':'Compras de maíz amarillo duro','fecha':fecha
-        }
+        'nombre':'Compras de maíz amarillo duro','fecha':fecha,
+        },
+        'icono' : '{}{}'.format(settings.STATIC_URL, 'images/maiz.png')
     }    
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="reporte compras %s.pdf"' % (fecha1)
+    #response['Content-Disposition'] = 'attachment; filename="reporte compras %s.pdf"' % (fecha1)
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -632,6 +633,7 @@ def imprimir_compras(request):
     if pisa_status.err:
        return HttpResponse('Tenemos los siguientes errores <pre>' + html + '</pre>')
     return response
+
 
 @login_required
 def reportes_ventas(request, template_name='app/inventarios/listar_ventas.html'):
@@ -696,7 +698,7 @@ def imprimir_ventas(request):
     
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="reporte venta %s.pdf"' % (fecha1)
+    #response['Content-Disposition'] = 'attachment; filename="reporte venta %s.pdf"' % (fecha1)
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -935,7 +937,7 @@ def listar_bodega(request, template_name='app/inventarios/listar_bodega.html'):
     total_bodega=ingreso['cantidad__sum']-salida['cantidad__sum']
     return render(request, template_name, {'form':form,'ingreso':ingreso,'salida':salida,'total_bodega':total_bodega})           
 
-####
+
 @login_required
 def imprimir_bodega(request):        
     total_bodega = 0
@@ -983,9 +985,8 @@ def imprimir_bodega(request):
        return HttpResponse('Tenemos los siguientes errores <pre>' + html + '</pre>')
     return response
 
-####
 
-@method_decorator([login_required,gerente_required], name='dispatch') #@method_decorator([login_required,gerente_required], name='dispatch')
+@method_decorator([login_required,gerente_required], name='dispatch')
 class CrearArticulo(CreateView):
     model = Articulo
     template_name = 'app/inventarios/articulos/articulo_crear.html'
@@ -1255,7 +1256,7 @@ class ImprimirSalidaPdfView(View):
         return HttpResponseRedirect(reverse_lazy('ingresar_articulo'))
 
 #Vistas del CRUD de empleado
-@method_decorator([login_required,gerente_required], name='dispatch')
+#@method_decorator([login_required,gerente_required], name='dispatch')
 class CrearEmpleado(CreateView):
     model = Empleado
     template_name = 'app/inventarios/empleado/empleado_crear.html'
@@ -1445,7 +1446,7 @@ def buscar_PesajesCompra(request):
     return JsonResponse(data, safe=False)
 
 #Pagina del Dashboard 
-class DashboardView(LoginRequiredMixin, TemplateView):
+class DashboardView(LoginRequiredMixin, TemplateView): 
     template_name = 'app/dashboard.html'
     #Obtenemos el total de compras
     def get_total_compras(self):

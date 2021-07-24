@@ -4,16 +4,23 @@
 
 {% block stylesheets %}
 {{ block.super }}
-<link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<!-- <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
 <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
 <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+<link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet"> -->
 {% endblock stylesheets %}
 
 {% block content %}
   <div class="right_col" role="main">
     <div class="">
+      <!-- nav superior -->
+      <nav>
+        <ul class="breadcrumb">
+          <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+          <li class="active">Listado de Categorias</li>
+        </ul>
+      </nav>
     <div class="clearfix"></div>
     
     <div class="row">     
@@ -21,7 +28,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Listado de Categorias</h2>            
+            <h2><i class="fa fa-briefcase"></i> Listado de Categorias</h2>            
             <div class="clearfix"></div>
           </div>                        
           <div class="x_content">
@@ -47,18 +54,19 @@
                   <br>                
                 <div class="clearfix"></div>
                 <div class="x_content">
-                <table id="tblCategoria" class="table table-striped jambo_table bulk_action">
+                <div class="table-responsive">
+                <table id="tblCategoria" class="table table-striped jambo_table dt-responsive nowrap" style="width: 100%;" >
                   <thead>
-                    <tr class="headings">                                                           
-                      <th class="column-title text-center">Nro</th>
-                      <th class="column-title text-center">Nombre</th>
-                      <th class="column-title text-center">Categoria</th> 
-                      <th class="column-title text-center">Opciones</th>   
+                    <tr>                                                           
+                      <th class="column-title text-center" scope="col">Nro</th>
+                      <th class="column-title text-center" scope="col">Nombre</th>
+                      <th class="column-title text-center" scope="col">Categoria</th> 
+                      <th class="column-title text-center" scope="col">Opciones</th>   
                     </tr>
                   </thead>
                   <tbody>
                     {% for cat in form %}
-                    <tr class="even pointer">
+                    <tr>
                       <td class="text-center">{{ forloop.counter }}</td>                                                             
                       <td class="text-center">{{cat.nombre}} </td> 
                       <td class="text-center">{{cat.descripcion}} </td>
@@ -70,6 +78,7 @@
                     {% endfor %}                   
                   </tbody>
                 </table>
+              </div>
                                     
           </div>
         </div>
@@ -83,15 +92,11 @@
 {% block javascripts %}
   {{ block.super}}
     <!-- Datatables -->
-  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+ <!--  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
   <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
-  <script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-  <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
   <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-  <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-  <script>
+  <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script> -->
+<script>
     $(function(){
 
       $('#tblCategoria').DataTable( {

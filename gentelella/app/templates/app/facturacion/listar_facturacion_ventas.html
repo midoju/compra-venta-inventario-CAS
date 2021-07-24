@@ -1,22 +1,22 @@
 {% extends "app/base_site.html" %}
 
-{% block title %} Reporte de Facturación Ventas {% endblock title %}
+{% block title %} Reporte Factura de Ventas {% endblock title %}
 
 {% block stylesheets %}
 {{ block.super }}
-<link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
 <!--plugin autocompletado -->
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
 {% endblock stylesheets %}
 
 {% block content %}
 <div class="right_col" role="main">
-
+  <!-- nav superior -->
+  <nav>
+    <ul class="breadcrumb">
+      <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+      <li class="active">Reporte Facturas de Ventas</li>
+    </ul>
+  </nav> 
   <div class="row">
 
     <div class="clearfix"></div>
@@ -24,7 +24,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2>Reporte de Facturación de Ventas</h2>
+          <h2><i class="fa fa-clipboard"></i> Reporte Facturas de Ventas</h2>
           <div class="clearfix"></div>
         </div>
 
@@ -38,7 +38,7 @@
               <div class="col-md-5 col-sm-3 col-xs-12">
                 <div class="input-group">
                   <input type="text" name="empresa" id="empresa" class="form-control" 
-                   value="{{ empresa}}">
+                   value="{{empresa}}">
                   <span class="input-group-btn">
                     <button id="btnLimpiarE" type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
                   </span>
@@ -62,17 +62,17 @@
             </div>            
             <div class="ln_solid"></div>          
           </form>         
-          
-            <table id="facturacion_compras" class="table table-striped jambo_table">
+          <div class="table-responsive">
+            <table id="facturacion_compras" class="table table-striped jambo_table dt-responsive nowrap" style="width: 100%;">
               <thead>
                 <tr class="headings">
-                  <th class="column-title text-center">Nro.</th>
-                  <th class="column-title text-center">Fecha</th>
-                  <th class="column-title text-center">Empresa</th>
-                  <th class="column-title text-center">Número</th>
-                  <th class="column-title text-center">Cantidad</th>
-                  <th class="column-title text-center">Precio U.</th>
-                  <th class="column-title text-center">Precio T.</th>
+                  <th class="column-title text-center" scope="col">Nro.</th>
+                  <th class="column-title text-center" scope="col">Fecha</th>
+                  <th class="column-title text-center" scope="col">Empresa</th>
+                  <th class="column-title text-center" scope="col">Número</th>
+                  <th class="column-title text-center" scope="col">Cantidad</th>
+                  <th class="column-title text-center" scope="col">Precio U.</th>
+                  <th class="column-title text-center" scope="col">Precio T.</th>
                 </tr>
               </thead>
               <tbody>
@@ -93,7 +93,7 @@
                 {% endfor %}
               </tbody>
             </table>
-            
+          </div>
           <!---->
           <div class="row">
             <form action="{% url 'imprimir_facturacion_ventas' %}" method="post" target="_blank">
@@ -113,11 +113,6 @@
 
 {% block javascripts %}
 {{ block.super}}
-
-<!-- Datatables -->
-<script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
 
 <!-- jquery.inputmask -->
 <script src="/static/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>

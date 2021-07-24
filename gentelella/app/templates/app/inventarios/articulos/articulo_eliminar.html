@@ -7,7 +7,13 @@
 
 {% block content %}
   <div class="right_col" role="main">
-    
+    <nav>
+      <ul class="breadcrumb">
+        <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+        <li><a href=" {% url 'listar_articulo' %} ">Listar Articulos</a></li>
+        <li class="active">Eliminar Articulo</li>
+      </ul>
+    </nav>
     <div class="row">
       <div class="clearfix"></div>
     </div>
@@ -15,7 +21,7 @@
         <div class="col-md-8 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Confirmación de Eliminación</h2>
+              <h2><i class="fa fa-trash"></i> Confirmación de Eliminación</h2>
               
               <div class="clearfix"></div>
             </div>
@@ -25,7 +31,8 @@
               <form method="POST"  class="form-horizontal form-label-left input_mask">
                 {% csrf_token %}
                     <p><strong>¿Desea eliminar el registro de {{object}} ?</strong></p>
-                    <button type="submit" class="btn btn-danger">Confirmar</button>                
+                    <br>
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Confirmar</button>                
                   </div>
                 </div>
                           

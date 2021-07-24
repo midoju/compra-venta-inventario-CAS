@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'crum.CurrentRequestUserMiddleware'
+    'crum.CurrentRequestUserMiddleware',
 ]
 
 ROOT_URLCONF = 'gentelella.urls'
@@ -76,10 +77,11 @@ WSGI_APPLICATION = 'gentelella.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'centro_acopio',
+        'NAME': 'db_acopio',#'centro_acopio',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -129,7 +131,20 @@ USE_L10N = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+
+
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR,'app/static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+MEDIA_ROOT = os.path.join(BASE_DIR, '/app/static/images')
+MEDIA_URL = '/images/'
+
 
 LOGIN_REDIRECT_URL = 'inicio'
 LOGOUT_REDIRECT_URL = 'login'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

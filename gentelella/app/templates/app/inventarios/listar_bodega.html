@@ -16,6 +16,13 @@
   
     <div class="right_col" role="main">
       <div class="">
+        <nav>
+          <ul class="breadcrumb">
+            <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+            <li><a href=" {% url 'inventario_general' %} ">Inventario General</a></li>
+            <li class="active">Transacciones en Bodega</li>
+          </ul>
+        </nav>
       <div class="clearfix"></div>
       
       <div class="row">     
@@ -30,7 +37,7 @@
                 <div class="row invoice-info">
                     <div class="col-sm-4 invoice-col">
                         <h4>
-                            <i class="fa fa-cart-arrow-down"></i>
+                          <i class="fa fa-cart-arrow-down"></i>
                             Compras: {{ingreso.cantidad__sum}}
                         </h4>                      
                     </div>
@@ -73,7 +80,7 @@
                     </tbody>
                   </table>
                   <div class="col-md-12 col-sm-6 col-xs-12 text-center">
-                    <a class="btn btn-success" href="{% url 'imprimir_bodega' %}" target="_blank"><span class="fa fa-file-pdf-o"></span> Generar PDF</a>
+                    <a class="btn btn-primary" href="{% url 'imprimir_bodega' %}" target="_blank"><span class="fa fa-file-pdf-o"></span> Generar PDF</a>
                   </div>                                 
                 </div>
             </div>

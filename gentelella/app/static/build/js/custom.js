@@ -72,6 +72,11 @@ function init_sidebar() {
         $RIGHT_COL.css('min-height', contentHeight);
     };
 
+    var openUpMenu = function () {
+        $SIDEBAR_MENU.find('li').removeClass('active active-sm');
+        $SIDEBAR_MENU.find('li ul').slideUp();
+    }
+
     $SIDEBAR_MENU.find('a').on('click', function(ev) {
         console.log('clicked - sidebar_menu');
         var $li = $(this).parent();
@@ -84,12 +89,14 @@ function init_sidebar() {
         } else {
             // prevent closing menu if we are on child menu
             if (!$li.parent().is('.child_menu')) {
-                $SIDEBAR_MENU.find('li').removeClass('active active-sm');
-                $SIDEBAR_MENU.find('li ul').slideUp();
+               openUpMenu();
+               console.log('clicked - child_menu');
             } else {
                 if ($BODY.is(".nav-sm")) {
-                    $SIDEBAR_MENU.find("li").removeClass("active active-sm");
-                    $SIDEBAR_MENU.find("li ul").slideUp();
+                    if ($li.parent().is('child_menu')) {
+                        openUpMenu();
+                        console.log('clicked - nav-sm');
+                    }
                 }
             }
             $li.addClass('active');
@@ -2078,88 +2085,88 @@ function init_calendar() {
 
 /* DATA TABLES */
 
-function init_DataTables() {
+// function init_DataTables() {
 
-    console.log('run_datatables');
+//     console.log('run_datatables');
 
-    if (typeof($.fn.DataTable) === 'undefined') {
-        return;
-    }
-    console.log('init_DataTables');
+//     if (typeof($.fn.DataTable) === 'undefined') {
+//         return;
+//     }
+//     console.log('init_DataTables');
 
-    var handleDataTableButtons = function() {
-        if ($("#datatable-buttons").length) {
-            $("#datatable-buttons").DataTable({
-                dom: "Bfrtip",
-                buttons: [{
-                    extend: "copy",
-                    className: "btn-sm"
-                }, {
-                    extend: "csv",
-                    className: "btn-sm"
-                }, {
-                    extend: "excel",
-                    className: "btn-sm"
-                }, {
-                    extend: "pdfHtml5",
-                    className: "btn-sm"
-                }, {
-                    extend: "print",
-                    className: "btn-sm"
-                }, ],
-                responsive: true
-            });
-        }
-    };
+//     var handleDataTableButtons = function() {
+//         if ($("#datatable-buttons").length) {
+//             $("#datatable-buttons").DataTable({
+//                 dom: "Bfrtip",
+//                 buttons: [{
+//                     extend: "copy",
+//                     className: "btn-sm"
+//                 }, {
+//                     extend: "csv",
+//                     className: "btn-sm"
+//                 }, {
+//                     extend: "excel",
+//                     className: "btn-sm"
+//                 }, {
+//                     extend: "pdfHtml5",
+//                     className: "btn-sm"
+//                 }, {
+//                     extend: "print",
+//                     className: "btn-sm"
+//                 }, ],
+//                 responsive: true
+//             });
+//         }
+//     };
 
-    TableManageButtons = function() {
-        "use strict";
-        return {
-            init: function() {
-                handleDataTableButtons();
-            }
-        };
-    }();
+//     TableManageButtons = function() {
+//         "use strict";
+//         return {
+//             init: function() {
+//                 handleDataTableButtons();
+//             }
+//         };
+//     }();
 
-    $('#datatable').dataTable();
+//     $('#datatable').dataTable();
 
-    $('#datatable-keytable').DataTable({
-        keys: true
-    });
+//     $('#datatable-keytable').DataTable({
+//         keys: true
+//     });
 
-    $('#datatable-responsive').DataTable();
+//     $('#datatable-responsive').DataTable();
 
-    $('#datatable-scroller').DataTable({
-        ajax: "js/datatables/json/scroller-demo.json",
-        deferRender: true,
-        scrollY: 380,
-        scrollCollapse: true,
-        scroller: true
-    });
+//     $('#datatable-scroller').DataTable({
+//         ajax: "js/datatables/json/scroller-demo.json",
+//         deferRender: true,
+//         scrollY: 380,
+//         scrollCollapse: true,
+//         scroller: true
+//     });
 
-    $('#datatable-fixed-header').DataTable({
-        fixedHeader: true
-    });
+//     $('#datatable-fixed-header').DataTable({
+//         fixedHeader: true
+//     });
 
-    var $datatable = $('#datatable-checkbox');
+//     var $datatable = $('#datatable-checkbox');
 
-    $datatable.dataTable({
-        'order': [
-            [1, 'asc']
-        ],
-        'columnDefs': [
-            { orderable: false, targets: [0] }
-        ]
-    });
-    $datatable.on('draw.dt', function() {
-        $('checkbox input').iCheck({
-            checkboxClass: 'icheckbox_flat-green'
-        });
-    });
+//     $datatable.dataTable({
+//         'order': [
+//             [1, 'asc']
+//         ],
+//         'columnDefs': [
+//             { orderable: false, targets: [0] }
+//         ]
+//     });
+//     $datatable.on('draw.dt', function() {
+//         $('checkbox input').iCheck({
+//             checkboxClass: 'icheckbox_flat-green'
+//         });
+//     });
 
-    TableManageButtons.init();
+//     TableManageButtons.init();
 
-};
+// };
 
 
 
@@ -2189,7 +2196,7 @@ $(document).ready(function() {
     init_skycons();/*
     init_select2();*/
     init_validator();
-    init_DataTables();
+    // init_DataTables();
     init_chart_doughnut();
     init_gauge();
     init_PNotify();

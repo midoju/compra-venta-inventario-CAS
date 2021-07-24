@@ -1,21 +1,26 @@
 {% extends "app/base_site.html" %}
 
 {% block title %} Listado de Transportista {% endblock title %}
+
 {% block stylesheets %}
 {{ block.super }}
-<link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
 {% endblock stylesheets %}
 
 {% block content %}
   <div class="right_col" role="main">
-    <div class="">     
+    <div class="">
+      <nav>
+        <ul class="breadcrumb">
+          <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+          <li class="active">Listado de Transportista</li>
+        </ul>
+      </nav>     
     <div class="clearfix"></div>
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Listado de Transportista</h2>            
+            <h2><i class="fa fa-bus"></i> Listado de Transportista</h2>            
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
@@ -32,24 +37,24 @@
             <div class="form-group">
               <div class="col-md-12 col-sm-6 col-xs-12 col-md-offset-0">                        
                 <div>
-                  <a href="{% url 'crear_responsableTransporte' %}" class="btn btn-success btn-flat"><i class="fa fa-plus-square"></i> Nuevo Transportista</a>
+                  <a href="{% url 'crear_responsableTransporte' %}" class="btn btn-primary btn-flat"><i class="fa fa-plus-square"></i> Nuevo Transportista</a>
                 </div>
               </div>
             </div>    
           </form>
           <br>                                                          
-                         
-                <table id="tblTransportista" class="table table-striped jambo_table bulk_action">
+              <div class="table-responsive">      
+                <table id="tblTransportista" class="table table-striped jambo_table dt-responsive nowrap" style="width: 100%;">
                   <thead>
                     <tr class="headings">
-                      <th class="column-title text-center">Nro</th>                                                             
-                      <th class="column-title text-center">Identificaciòn</th>
-                      <th class="column-title text-center">Nombres</th>                     
-                      <th class="column-title text-center">Dirección</th>
-                      <th class="column-title text-center">Teléfono</th> 
-                      <th class="column-title text-center">Correo</th>
-                      <th class="column-title text-center">Placa Trailer</th>                      
-                      <th class="column-title text-center">Opciones</span></th>  
+                      <th class="column-title text-center" scope="col">Nro</th>                                                             
+                      <th class="column-title text-center" scope="col">Identificaciòn</th>
+                      <th class="column-title text-center" scope="col">Nombres</th>                     
+                      <th class="column-title text-center" scope="col">Dirección</th>
+                      <th class="column-title text-center" scope="col">Teléfono</th> 
+                      <th class="column-title text-center" scope="col">Correo</th>
+                      <th class="column-title text-center" scope="col">Placa Trailer</th>                      
+                      <th class="column-title text-center" scope="col">Opciones</span></th>  
                     </tr>
                   </thead>
                   <tbody>
@@ -69,7 +74,8 @@
                     </tr>
                     {% endfor %}                   
                   </tbody>
-                </table>                                    
+                </table> 
+              </div>                                     
           </div>
           </div>
         </div>
@@ -80,11 +86,6 @@
 
 {% block javascripts %}
   {{ block.super}}
-     <!-- Datatables -->
-   <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-   <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-   <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-   <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
    <script>
     $(function(){
 

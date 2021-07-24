@@ -4,18 +4,20 @@
 
 {% block stylesheets %}
 {{ block.super }}
-<link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
 <!-- plugin autocompletado -->
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
 {% endblock stylesheets %}
  
 {% block content %}
 <div class="right_col" role="main">
-
+  <!-- nav superior -->
+  <nav>
+    <ul class="breadcrumb">
+      <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+      <li class="active">Reporte de Ventas</li>
+    </ul>
+  </nav> 
   <div class="row">
 
     <div class="clearfix"></div>
@@ -23,13 +25,11 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2>Reporte de Ventas de Maíz Amarillo Duro</h2>
+          <h2><i class="fa fa-clipboard"></i> Reporte de Ventas de Maíz Amarillo Duro</h2>
           <div class="clearfix"></div>
         </div>
 
         <div class="x_content">
-
-
           <form class="form-horizontal form-label-left" method="POST" action="{% url 'reportes_ventas' %}">
             {% csrf_token %}
             <div class="form-group">
@@ -69,16 +69,16 @@
             </div>             
             <div class="ln_solid"></div>            
           </form>
-          
-            <table id="datatable" class="table table-striped jambo_table bulk_action">
+          <div class="table-responsive">
+            <table id="datatable" class="table table-striped jambo_table dt-responsive nowrap" style="width: 100%;">
               <thead>
                 <tr class="headings">
-                  <th class="column-title text-center">Nro.</th>
-                  <th class="column-title text-center">Fecha</th>
-                  <th class="column-title text-center">RUC</th>
-                  <th class="column-title text-center">Empresa</th>
-                  <th class="column-title text-center">Estado</th>
-                  <th class="column-title text-center">Peso QQ</th>
+                  <th class="column-title text-center" scope="col">Nro.</th>
+                  <th class="column-title text-center" scope="col">Fecha</th>
+                  <th class="column-title text-center" scope="col">RUC</th>
+                  <th class="column-title text-center" scope="col">Empresa</th>
+                  <th class="column-title text-center" scope="col">Facturación</th>
+                  <th class="column-title text-center" scope="col">Peso QQ</th>
                 </tr>
               </thead>
               <tbody>
@@ -96,6 +96,7 @@
                 {% endfor %}
               </tbody>
             </table>
+          </div>
             <div class="row">
               <form action="{% url 'imprimir_ventas' %}" method="post" target="_blank">
                 {% csrf_token %}
@@ -114,10 +115,6 @@
 
 {% block javascripts %}
 {{ block.super}}
-<!-- Datatables -->
-<script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
 <!-- jquery.inputmask -->
 <script src="/static/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

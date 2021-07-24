@@ -4,23 +4,25 @@
 
 {% block stylesheets %}
 {{ block.super }}
-<link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-<link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 {% endblock stylesheets %}
 
 {% block content %}
   <div class="right_col" role="main">
     <div class="">
+      <!-- nav superior -->
+      <nav>
+        <ul class="breadcrumb">
+          <li><a href=" {% url 'inicio' %} ">Inicio</a></li>
+          <li class="active">Listado de Proveedores</li>
+        </ul>
+      </nav>
     <div class="clearfix"></div>
     
     <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Listado de Proveedores</h2>            
+            <h2><i class="fa fa-users"></i> Listado de Proveedores</h2>            
             <div class="clearfix"></div>
           </div>
              <!-- Presentación de mensajes  -->
@@ -44,6 +46,7 @@
               </form>
               <br>              
               <div class="x_content">
+              <div class="table-responsive">
                 <table id="tblProveedor" class="table table-striped jambo_table bulk_action">
                   <thead>
                     <tr class="headings">                      
@@ -73,7 +76,7 @@
                     {% endfor %}                   
                   </tbody>
                 </table>
-                                    
+              </div>                  
           </div>
           </div>
         </div>
@@ -84,15 +87,6 @@
 
 {% block javascripts %}
   {{ block.super}}
-    <!-- Datatables -->
-  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
-  <script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-  <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-  <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
   <script>
     $(function(){
 

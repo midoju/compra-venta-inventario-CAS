@@ -12,35 +12,31 @@
     <div class="">
       <div class="row top_tiles">
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-          <div class="tile-stats">
+          <div class="tile-stats compras">
             <div class="icon"><i class="fa fa-cart-arrow-down"></i></div>
             <div class="count"> {{get_total_compras}} </div>
             <h3>Compras</h3>
-            <p>Totales de Maiz Amarillo Duro</p>
           </div>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-          <div class="tile-stats">
+          <div class="tile-stats ventas">
             <div class="icon"><i class="fa fa-cart-plus"></i></div>
             <div class="count"> {{get_total_ventas}} </div>
             <h3>Ventas</h3>
-            <p>Totales de Maiz Amarillo Duro</p>
           </div>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-          <div class="tile-stats">
+          <div class="tile-stats empresa">
             <div class="icon"><i class="fa fa-building-o"></i></div>
             <div class="count">{{get_nro_empresas}}</div>
             <h3>Empresas</h3>
-            <p>Relacionadas con el CAS</p>
           </div>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-          <div class="tile-stats">
+          <div class="tile-stats productor">
             <div class="icon"><i class="fas fa fa-users"></i></div> 
             <div class="count">{{get_nro_productores}} </div>
             <h3>Productores</h3>
-            <p>Relacionados con el CAS </p>
           </div>
         </div>
       </div>
@@ -49,7 +45,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Transacción Compras y ventas<small>Progreso Diario</small></h2>
+              <h2>Transacción Compras y ventas</h2>
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -102,7 +98,7 @@
         text: 'Compras y Ventas Diarias del Centro de Acopio Sabanilla'
     },
     subtitle: {
-        text: 'Porcentejes reales'
+        text: 'Porcentajes diarios'
     },
     xAxis: {
         categories: [ textoFecha(sumarDias(new Date(),-6)),
