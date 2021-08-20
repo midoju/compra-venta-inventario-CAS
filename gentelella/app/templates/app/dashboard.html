@@ -11,48 +11,131 @@
   <div class="right_col" role="main">
     <div class="">
       <div class="row top_tiles">
-        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="animated flipInY col-lg-3 col-md-6 col-sm-6 col-xs-12">
           <div class="tile-stats compras">
             <div class="icon"><i class="fa fa-cart-arrow-down"></i></div>
-            <div class="count"> {{get_total_compras}} </div>
+            <div class="count"> {{get_total_compras}} qq </div>
             <h3>Compras</h3>
+            <p>Totales desde el año 2021</p>
           </div>
         </div>
-        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="animated flipInY col-lg-3 col-md-6 col-sm-6 col-xs-12">
           <div class="tile-stats ventas">
             <div class="icon"><i class="fa fa-cart-plus"></i></div>
-            <div class="count"> {{get_total_ventas}} </div>
+            <div class="count"> {{get_total_ventas}} qq</div>
             <h3>Ventas</h3>
+            <p>Totales desde el año 2021</p>
           </div>
         </div>
-        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="animated flipInY col-lg-3 col-md-6 col-sm-6 col-xs-12">
           <div class="tile-stats empresa">
-            <div class="icon"><i class="fa fa-building-o"></i></div>
-            <div class="count">{{get_nro_empresas}}</div>
-            <h3>Empresas</h3>
+            <div class="icon"><i class="fa fa-cubes"></i></div>
+            <div class="count">{{get_stock_actual}} qq</div>
+            <h3>Stock Actual</h3>
+            <p>En bodega de maiz amarillo duro</p>
           </div>
         </div>
-        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="animated flipInY col-lg-3 col-md-6 col-sm-6 col-xs-12">
           <div class="tile-stats productor">
             <div class="icon"><i class="fas fa fa-users"></i></div> 
             <div class="count">{{get_nro_productores}} </div>
             <h3>Productores</h3>
+            <p>Registrados</p>
           </div>
         </div>
       </div>
       <!--ventana de transacciones -->
       <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <!-- comentar -->
+        <div class="col-md-9 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Transacción Compras y ventas</h2>
+              <h2>Transacción compras y ventas</h2>
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
               <div class="col-md-12 col-sm-12 col-xs-12">
-                <figure class="highcharts-figure">
-                  <div id="container"></div>
-                </figure>
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                  <ul id="myTab1" class="nav nav-tabs bar_tabs right" role="tablist">
+                    <li role="presentation" class="active"><a href="#tab_content11" id="home-tabb" role="tab" data-toggle="tab" aria-controls="Compra home" aria-expanded="true">Meses</a>
+                    </li>
+                    <li role="presentation" class=""><a href="#tab_content22" role="tab" id="profile-tabb" data-toggle="tab" aria-controls="profile" aria-expanded="false">Dia</a>
+                    </li>
+                  </ul>
+                  <div id="myTabContent2" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
+                      <div class="x_panel" >
+                        <div class="x_content">
+                          <div class="col-md-12 col-sm-12 col-xs-12">
+                            <figure class="highcharts-figure">
+                              <div id="container3"></div>
+                            </figure>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tab_content22" aria-labelledby="profile-tab">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                          <div class="x_content">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                              <figure class="highcharts-figure">
+                                <div id="grafica-barra-diaria"></div>
+                              </figure>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+        </div>
+          <div class="col-md-3 col-xs-12 col-sm-12 ">
+            <div class="x_title">
+              <h2>Ultimas ventas</h2>
+              <div class="clearfix"></div>
+            </div>
+              {% for venta in get_ultimas_ventas %}
+                {% if forloop.counter == 1 %}
+                  <div class="bs-callout bs-callout-primary">
+                {% elif  forloop.counter == 2 %}
+                  <div class="bs-callout bs-callout-success">
+                {% elif  forloop.counter == 3 %}
+                  <div class="bs-callout bs-callout-danger">
+                {% elif  forloop.counter == 4 %}
+                  <div class="bs-callout bs-callout-info">
+                {% elif  forloop.counter == 5 %}
+                  <div class="bs-callout bs-callout-warning">
+                {% elif  forloop.counter == 6 %}
+                  <div class="bs-callout bs-callout-danger">
+                {% endif %}     
+                      <h4>{{venta.idEmpresa.razonSocial}}</h4>
+                      <em>{{venta.total}} qq    </em> <strong>Fecha:</strong>  <em>{{ venta.fechaVenta|date:"M d, Y" }}</em><br>
+                      <strong>Transportista: </strong>   {{ venta.idResponsableTransporte.nombre }} 
+                    </div>
+              {% endfor %}
+          </div>
+        <!-- comentar -->
+          <div class="col-md-12 col-sm-12 col-xs-12"> 
+            <div class="x_panel" >
+              <div class="x_title">
+                <h2>Resumen de compras y ventas anuales</h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                  <figure class="highcharts-figure">
+                    <div id="grafico-pastel-ventas"></div>
+                  </figure>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                  <figure class="highcharts-figure">
+                    <div id="grafico-pastel-compras"></div>
+                  </figure>
+                </div>
               </div>
             </div>
           </div>
@@ -86,19 +169,23 @@
       return fecha;
     }
 
+    function fechaAño(){
+      var mes = new Date 
+      return mes.getFullYear()
+    }
 
   </script>
   
   <script type="application/javascript">
-    Highcharts.chart('container', {
+    Highcharts.chart('grafica-barra-diaria', {
     chart: {
         type: 'column'
     },
     title: {
-        text: 'Compras y Ventas Diarias del Centro de Acopio Sabanilla'
+        text: 'Compras y Ventas por Días del Centro de Acopio Sabanilla'
     },
     subtitle: {
-        text: 'Porcentajes diarios'
+        text: 'Ultimos 7 días'
     },
     xAxis: {
         categories: [ textoFecha(sumarDias(new Date(),-6)),
@@ -135,24 +222,146 @@
     series: [{
         name: 'Compras',
         data: {{get_compras_diario|safe}}
-
     }, {
         name: 'Ventas',
         data: {{get_ventas_diario|safe}}
-
     }
     ]
+  });
+  </script>
+  <script>
+    Highcharts.chart('container3', {
+    chart: {
+        type: 'spline'
+    },
+    title: {
+        text: 'Compras y Ventas por Meses del Centro de Acopio de Sabanilla '
+    },
+    xAxis: {
+        categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    },
+    yAxis: {
+        title: {
+            text: 'Peso'
+        },
+        labels: {
+            formatter: function () {
+                return this.value + ' qq';
+            }
+        }
+    },
+    tooltip: {
+        crosshairs: true,
+        shared: true
+    },
+    plotOptions: {
+        spline: {
+            marker: {
+                radius: 4,
+                lineColor: '#666666',
+                lineWidth: 1
+            }
+        }
+    },
+    series: [{
+        name: 'Compras',
+        marker: {
+            symbol: 'square'
+        },
+        data: {{get_compras_mes|safe}}
+
+    }, {
+        name: 'Ventas',
+        marker: {
+            symbol: 'diamond'
+        },
+        data: {{get_ventas_mes|safe}}       
+    }]
+  });
+  </script>
+  <script>
+    console.log({{get_grafico_pastel_ventas|safe}})
+    console.log({{get_grafico_pastel_compras|safe}})
+    console.log({{get_empresas|safe}})
+  </script>
+  <script>
+Highcharts.setOptions({
+    colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
 });
-    
-    
 
+Highcharts.chart('grafico-pastel-ventas', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Porcentaje de compras en el año, ' + fechaAño()
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: {{get_grafico_pastel_ventas|safe}}
+    }]
+});
+  </script>
+  <script>
+    Highcharts.chart('grafico-pastel-compras', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Porcentaje de compras en el año, ' + fechaAño()
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false,
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Porcentaje',
+        colorByPoint: true,
+        data: {{get_grafico_pastel_compras|safe}}
+    }]
+});
+  </script>
 
-   
-    $(function () {
-
-
-    });
-</script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
  
 <script>

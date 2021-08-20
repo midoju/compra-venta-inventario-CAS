@@ -148,6 +148,7 @@ class Empresa(models.Model):
     direccion = models.CharField(max_length=250)
     telefono = models.CharField(max_length=10)
     correo = models.EmailField(max_length=100, blank=True, null=True)
+    
     class Meta:
         verbose_name = 'Empresa'
         verbose_name_plural = 'Empresas'
