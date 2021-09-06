@@ -1487,12 +1487,13 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
     def get_compras_mes(self):
         data = []
-       
         try:
-            y =  datetime.now().year 
-            m =  datetime.now().month
+            fechaHasta = date.today() #Fecha hoy
+            fechaDesde = fechaHasta - timedelta(days=365) 
             for m in range(1, 13):
-                total = CompraMaiz.objects.filter(fechaCompra__year=y, fechaCompra__month=m).aggregate(r=Coalesce(Sum('total'), 0)).get('r')
+                mes = ((( fechaDesde.month - 1) + m ) % 12 ) + 1
+                año  = int(fechaDesde.year + ((( fechaDesde.month - 1) + m ) / 12 ))
+                total = CompraMaiz.objects.filter(fechaCompra__year=año, fechaCompra__month=mes).aggregate(r=Coalesce(Sum('total'), 0)).get('r')
                 data.append(float(total))        
         except:
             pass          
@@ -1500,13 +1501,14 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     
     def get_ventas_mes(self):
         data = []
-       
         try:
-            y =  datetime.now().year 
-            m =  datetime.now().month
+            fechaHasta = date.today() #Fecha hoy
+            fechaDesde = fechaHasta - timedelta(days=365)      
             for m in range(1, 13):
-                total = VentaMaiz.objects.filter(fechaVenta__year=y, fechaVenta__month=m).aggregate(r=Coalesce(Sum('total'), 0)).get('r')
-                data.append(float(total))        
+                mes = ((( fechaDesde.month - 1) + m ) % 12 ) + 1
+                año  = int(fechaDesde.year + ((( fechaDesde.month - 1) + m ) / 12 ))
+                total = VentaMaiz.objects.filter(fechaVenta__year=año, fechaVenta__month=mes).aggregate(r=Coalesce(Sum('total'), 0)).get('r')
+                data.append(float(total))         
         except:
             pass          
         return data
@@ -1569,9 +1571,10 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                 data.append({
                     'name': e.razonSocial,
                     'y': float(total)})                  
+            data.sort(key=lambda d: d['y'], reverse=True)
         except:
             pass
-        return data
+        return data[0:10]
     
     def get_grafico_pastel_compras(self):
         data = []
@@ -1579,15 +1582,15 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         mes = datetime.now().month
         try:
             for p in Productor.objects.all():
-                total = CompraMaiz.objects.filter(valida=True, fechaCompra__year=año, idProductor_id=p.id).aggregate(
-                                            r=Coalesce(Sum('total'), 0)).get('r')
+                total = CompraMaiz.objects.filter(valida=True, idProductor_id = p.id).aggregate(r=Coalesce(Sum('total'), 0)).get('r') 
                 if total > 0:
                     data.append({
                         'name': p.nombres,
-                        'y': float(total)})                  
+                        'y': float(total)})
+            data.sort(key=lambda d: d['y'], reverse=True)          
         except:
             pass
-        return data
+        return data[0:10]
 
     def get_ultimas_ventas(self):
         try:
@@ -1596,8 +1599,23 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             pass
         return form
 
+    def get_ult_12meses(self):
+        data = []
+        try:
+            fechaHasta = date.today() #Fecha hoy
+            fechaDesde = fechaHasta - timedelta(days=365)      
+            meses = ['','Enero ','Febrero ','Marzo ','Abril ','Mayo ','Junio ','Julio ','Agosto ','Septiembre ','Octubre ','Noviembre ','Diciembre ']
+            for m in range(1, 13):
+                mes = ((( fechaDesde.month - 1) + m ) % 12 ) + 1
+                año  = int(fechaDesde.year + ((( fechaDesde.month - 1) + m ) / 12 ))
+                data.append(str(meses[mes]) +str( año))
+        except:
+            pass
+        return data
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['get_fecha'] = self.get_ult_12meses()
         context['get_nro_productores'] =  self.get_nro_productores()
         context['get_nro_empresas'] =  self.get_nro_empresas()
         context['get_total_compras'] =  self.get_total_compras()

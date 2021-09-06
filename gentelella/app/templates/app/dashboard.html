@@ -122,7 +122,7 @@
           <div class="col-md-12 col-sm-12 col-xs-12"> 
             <div class="x_panel" >
               <div class="x_title">
-                <h2>Resumen de compras y ventas anuales</h2>
+                <h2>Top 10 de compras y ventas anuales</h2>
                 <div class="clearfix"></div>
               </div>
               <div class="x_content">
@@ -163,12 +163,12 @@
       var devolver = diaLetras+" "+fecha.getDate();
       return devolver;
     }
-    
+       
     function sumarDias(fecha, dias){
       fecha.setDate(fecha.getDate() + dias);
       return fecha;
     }
-
+    
     function fechaAño(){
       var mes = new Date 
       return mes.getFullYear()
@@ -238,8 +238,9 @@
         text: 'Compras y Ventas por Meses del Centro de Acopio de Sabanilla '
     },
     xAxis: {
-        categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+      categories: {{get_fecha|safe}}
+        // categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        //     'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
     },
     yAxis: {
         title: {
@@ -281,9 +282,8 @@
   });
   </script>
   <script>
-    console.log({{get_grafico_pastel_ventas|safe}})
+    console.log({{get_fecha|safe}})
     console.log({{get_grafico_pastel_compras|safe}})
-    console.log({{get_empresas|safe}})
   </script>
   <script>
 Highcharts.setOptions({
