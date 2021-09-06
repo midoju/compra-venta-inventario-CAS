@@ -1487,13 +1487,28 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
     def get_compras_mes(self):
         data = []
-       
         try:
-            y =  datetime.now().year 
-            m =  datetime.now().month
+            fechaHasta = date.today() #Fecha hoy
+            fechaDesde = fechaHasta - timedelta(days=365) 
             for m in range(1, 13):
-                total = CompraMaiz.objects.filter(fechaCompra__year=y, fechaCompra__month=m).aggregate(r=Coalesce(Sum('total'), 0)).get('r')
+                mes = ((( fechaDesde.month - 1) + m ) % 12 ) + 1
+                año  = int(fechaDesde.year + ((( fechaDesde.month - 1) + m ) / 12 ))
+                total = CompraMaiz.objects.filter(fechaCompra__year=año, fechaCompra__month=mes).aggregate(r=Coalesce(Sum('total'), 0)).get('r')
                 data.append(float(total))        
+        except:
+            pass          
+        return data
+    
+    def get_ventas_mes(self):
+        data = []
+        try:
+            fechaHasta = date.today() #Fecha hoy
+            fechaDesde = fechaHasta - timedelta(days=365)      
+            for m in range(1, 13):
+                mes = ((( fechaDesde.month - 1) + m ) % 12 ) + 1
+                año  = int(fechaDesde.year + ((( fechaDesde.month - 1) + m ) / 12 ))
+                total = VentaMaiz.objects.filter(fechaVenta__year=año, fechaVenta__month=mes).aggregate(r=Coalesce(Sum('total'), 0)).get('r')
+                data.append(float(total))         
         except:
             pass          
         return data
@@ -1528,14 +1543,91 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             pass
         return data  
 
+    def get_stock_actual(self):
+        cant = 0
+        try:
+            ingreso = BodegaMaiz.objects.filter(tipoMovimiento=INGRESO, vigente=True).aggregate(Sum('cantidad'))
+            salida = BodegaMaiz.objects.filter(tipoMovimiento=SALIDA, vigente=True).aggregate(Sum('cantidad'))
+            
+            #Validar si la suma da 0
+            if ingreso['cantidad__sum'] is None:
+                ingreso['cantidad__sum']=0
+            if salida['cantidad__sum'] is None:
+                salida['cantidad__sum']=0
+            
+            cant = ingreso['cantidad__sum']-salida['cantidad__sum']
+        except:
+            pass
+        return cant
+    
+    def get_grafico_pastel_ventas(self):
+        data = []
+        año = datetime.now().year
+        mes = datetime.now().month
+        try:
+            for e in Empresa.objects.all():
+                total = VentaMaiz.objects.filter(valida=True, fechaVenta__year=año, idEmpresa_id=e.id).aggregate(
+                                            r=Coalesce(Sum('total'), 0)).get('r')
+                data.append({
+                    'name': e.razonSocial,
+                    'y': float(total)})                  
+            data.sort(key=lambda d: d['y'], reverse=True)
+        except:
+            pass
+        return data[0:10]
+    
+    def get_grafico_pastel_compras(self):
+        data = []
+        año = datetime.now().year
+        mes = datetime.now().month
+        try:
+            for p in Productor.objects.all():
+                total = CompraMaiz.objects.filter(valida=True, idProductor_id = p.id).aggregate(r=Coalesce(Sum('total'), 0)).get('r') 
+                if total > 0:
+                    data.append({
+                        'name': p.nombres,
+                        'y': float(total)})
+            data.sort(key=lambda d: d['y'], reverse=True)          
+        except:
+            pass
+        return data[0:10]
+
+    def get_ultimas_ventas(self):
+        try:
+            form = VentaMaiz.objects.all()[:10]
+        except:
+            pass
+        return form
+
+    def get_ult_12meses(self):
+        data = []
+        try:
+            fechaHasta = date.today() #Fecha hoy
+            fechaDesde = fechaHasta - timedelta(days=365)      
+            meses = ['','Enero ','Febrero ','Marzo ','Abril ','Mayo ','Junio ','Julio ','Agosto ','Septiembre ','Octubre ','Noviembre ','Diciembre ']
+            for m in range(1, 13):
+                mes = ((( fechaDesde.month - 1) + m ) % 12 ) + 1
+                año  = int(fechaDesde.year + ((( fechaDesde.month - 1) + m ) / 12 ))
+                data.append(str(meses[mes]) +str( año))
+        except:
+            pass
+        return data
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['get_fecha'] = self.get_ult_12meses()
         context['get_nro_productores'] =  self.get_nro_productores()
         context['get_nro_empresas'] =  self.get_nro_empresas()
         context['get_total_compras'] =  self.get_total_compras()
         context['get_total_ventas'] =  self.get_total_ventas()
-        context['get_compras_diario'] =  self.get_compras_diario()
-        context['get_ventas_diario'] =  self.get_ventas_diario()      
+        context['get_stock_actual'] = self.get_stock_actual()
+        context['get_compras_diario'] =  self.get_compras_diario() 
+        context['get_ventas_diario'] =  self.get_ventas_diario()
+        context['get_compras_mes'] =  self.get_compras_mes()
+        context['get_ventas_mes'] =  self.get_ventas_mes()
+        context['get_grafico_pastel_ventas'] = self.get_grafico_pastel_ventas()
+        context['get_grafico_pastel_compras'] = self.get_grafico_pastel_compras()
+        context['get_ultimas_ventas'] = VentaMaiz.objects.filter(valida=True)[:5]     
         return context
 
 class Error404View(TemplateView):

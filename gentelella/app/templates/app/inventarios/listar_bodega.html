@@ -5,11 +5,7 @@
 
   {% block stylesheets %}
   {{ block.super }}
-  <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
   {% endblock stylesheets %}
 
   {% block content %}
@@ -79,10 +75,10 @@
                       {% endfor %}                   
                     </tbody>
                   </table>
-                  <div class="col-md-12 col-sm-6 col-xs-12 text-center">
-                    <a class="btn btn-primary" href="{% url 'imprimir_bodega' %}" target="_blank"><span class="fa fa-file-pdf-o"></span> Generar PDF</a>
-                  </div>                                 
                 </div>
+                <div class="col-md-12 col-sm-6 col-xs-12 text-center">
+                  <a class="btn btn-primary" href="{% url 'imprimir_bodega' %}" target="_blank"><span class="fa fa-file-pdf-o"></span> Generar PDF</a>
+                </div>                                 
             </div>
           </div>
         </div>
@@ -94,12 +90,7 @@
 
   {% block javascripts %}
     {{ block.super}}
-      <!-- Datatables -->
-    <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    
+  
     <script>
       $(function(){
             var total = 0;
